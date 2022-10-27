@@ -5,6 +5,14 @@ import java.util.List;
 
 public class BookUtil {
 
+	public static boolean isValidPages(Book book) {
+		if (book.getLeftPageNumber() + PageInfo.NEXT_INDEX.getInfo() != book.getRightPageNumber()) {
+			return false;
+		}
+
+		return true;
+	}
+
 
 	public static long getMaxTimesPageNumber(Book book) {
 		long leftTimesNumber = 1L;

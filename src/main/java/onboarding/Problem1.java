@@ -2,6 +2,8 @@ package onboarding;
 
 import java.util.List;
 
+import onboarding.problem1.Book;
+import onboarding.problem1.BookUtil;
 import onboarding.problem1.GameInfo;
 import onboarding.problem1.PageInfo;
 
@@ -15,7 +17,30 @@ class Problem1 {
             return GameInfo.INVALID.getInfo();
         }
 
+        Book pobiBook = Book.builder()
+            .leftPageNumber(pobi.get(PageInfo.LEFT.getInfo()))
+            .rightPageNumber(pobi.get(PageInfo.RIGHT.getInfo()))
+            .build();
 
+        Book crongBook = Book.builder()
+            .leftPageNumber(crong.get(PageInfo.LEFT.getInfo()))
+            .rightPageNumber(crong.get(PageInfo.RIGHT.getInfo()))
+            .build();
+
+        if(!BookUtil.isValidPages(pobiBook) || !BookUtil.isValidPages(crongBook)){
+            return GameInfo.INVALID.getInfo();
+        }
+
+        long pobiResult = Math.max(BookUtil.getMaxPlusPageNumber(pobiBook), BookUtil.getMaxTimesPageNumber(pobiBook));
+        long crongResult = Math.max(BookUtil.getMaxPlusPageNumber(crongBook), BookUtil.getMaxTimesPageNumber(crongBook));
+
+        if(pobiResult > crongResult){
+            return GameInfo.POBI_WIN.getInfo();
+        }
+
+        if(pobiResult < crongResult){
+            return GameInfo.CRONG_WIN.getInfo();
+        }
 
         return GameInfo.DRAW.getInfo();
     }

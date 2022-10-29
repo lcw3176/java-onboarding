@@ -1,5 +1,8 @@
 package onboarding.problem4;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ReverseTranslator {
 
 	public String generate(String word){
@@ -14,6 +17,15 @@ public class ReverseTranslator {
 		}
 
 		return reversedWordBuilder.toString();
+	}
+
+
+	public boolean isValid(String word){
+		String wordWithoutSpace = word.replaceAll(" ", "");
+		Pattern pattern = Pattern.compile("^[a-zA-Z]*$");
+		Matcher matcher = pattern.matcher(wordWithoutSpace);
+
+		return matcher.find();
 	}
 
 

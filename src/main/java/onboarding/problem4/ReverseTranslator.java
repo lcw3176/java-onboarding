@@ -37,6 +37,30 @@ public class ReverseTranslator {
 		return isRange;
 	}
 
+	private boolean isInLowerRange(int asciiCode){
+		ASCII lowerAscii = ASCII.LOWER_CASE_START_INDEX;
+		ASCII commonOffset = ASCII.COMMON_INDEX_OFFSET;
+
+		if(asciiCode >= lowerAscii.getValue()
+			&& asciiCode <= lowerAscii.getValue() + commonOffset.getValue()){
+			return true;
+		}
+
+		return false;
+	}
+
+	private boolean isInUpperRange(int asciiCode){
+		ASCII upperAscii = ASCII.UPPER_CASE_START_INDEX;
+		ASCII commonOffset = ASCII.COMMON_INDEX_OFFSET;
+
+		if(asciiCode >= upperAscii.getValue()
+			&& asciiCode <= upperAscii.getValue() + commonOffset.getValue()){
+			return true;
+		}
+
+		return false;
+	}
+
 
 	private int getAscii(char text){
 		return (int) text;

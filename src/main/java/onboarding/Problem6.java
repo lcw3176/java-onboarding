@@ -19,6 +19,8 @@ public class Problem6 {
         List<Crew> survivorList = nicknameFilter.doFilter(new LinkedList<>(crewList));
         crewList.removeAll(survivorList);
 
-        return null;
+        return crewList.stream().map(Crew::getEmail)
+            .sorted()
+            .collect(Collectors.toList());
     }
 }

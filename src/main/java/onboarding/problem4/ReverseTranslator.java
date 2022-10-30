@@ -46,7 +46,7 @@ public class ReverseTranslator {
 	}
 
 	private int convertToReversedAscii(int asciiCode){
-		if(asciiCode == ASCII.WHITE_SPACE.getValue()){
+		if(!isInRange(asciiCode)){
 			return asciiCode;
 		}
 

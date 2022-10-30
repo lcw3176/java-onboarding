@@ -1,5 +1,6 @@
 package onboarding.problem5;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LightweightPolicy implements IPolicy{
@@ -9,11 +10,12 @@ public class LightweightPolicy implements IPolicy{
 	@Override
 	public AccountResponse withdraw(AccountRequest request) {
 		int cash = request.getCashAmount();
-		AccountResponse accountResponse = new AccountResponse();
+		List<Integer> numberOfCashList = new ArrayList<>(dividedPriceList.size());
+		AccountResponse accountResponse = new AccountResponse(numberOfCashList);
 
 		for(int dividedCash : dividedPriceList){
 			int result = (int) cash / dividedCash;
-			accountResponse.addResult(result);
+			accountResponse.addCashCount(result);
 			cash -= result * dividedCash;
 		}
 

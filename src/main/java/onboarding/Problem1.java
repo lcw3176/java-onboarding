@@ -13,7 +13,7 @@ class Problem1 {
             return GameInfo.INVALID.getInfo();
         }
 
-        if(pobi.size() < PageInfo.MIN_PAGES.getInfo() || crong.size() < PageInfo.MIN_PAGES.getInfo()){
+        if(pobi.size() < PageInfo.MIN_PAGES_COUNT.getInfo() || crong.size() < PageInfo.MIN_PAGES_COUNT.getInfo()){
             return GameInfo.INVALID.getInfo();
         }
 

@@ -3,7 +3,7 @@ package onboarding.problem1;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BookUtil {
+public class PageUtil {
 
 	public static boolean isValidPages(Book book) {
 		if (book.getLeftPageNumber() + PageInfo.NEXT_INDEX.getInfo() != book.getRightPageNumber()) {

@@ -10,6 +10,16 @@ public class PageUtil {
 			return false;
 		}
 
+		if(book.getLeftPageNumber() < PageInfo.MIN_PAGE_INDEX.getInfo()
+			|| book.getRightPageNumber() < PageInfo.MIN_PAGE_INDEX.getInfo()){
+			return false;
+		}
+
+		if(book.getLeftPageNumber() > PageInfo.MAX_PAGE_INDEX.getInfo()
+			|| book.getRightPageNumber() > PageInfo.MAX_PAGE_INDEX.getInfo()){
+			return false;
+		}
+
 		return true;
 	}
 

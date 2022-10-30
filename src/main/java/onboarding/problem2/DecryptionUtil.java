@@ -15,19 +15,17 @@ public class DecryptionUtil {
 			.mapToObj(c -> (char) c)
 			.collect(Collectors.toList());
 
-		boolean workedFlag = false;
+		List<Integer> indexList = findContinuousValueIndex(passwordList);
 
-		for(int i = 0; i < passwordList.size() - 1; i++){
-			if(passwordList.get(i) == passwordList.get(i + 1)){
-				passwordList.remove(i);
-				passwordList.remove(i);
-				workedFlag = true;
-			}
-		}
-
-		if(!workedFlag){
+		if(indexList.size() == 0){
 			return password;
 		}
+		Collections.reverse(indexList);
+
+		for(int i : indexList){
+			passwordList.remove(i);
+		}
+
 
 		password.changeValue(passwordList.stream()
 			.map(Object::toString)

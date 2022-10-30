@@ -1,6 +1,10 @@
 package onboarding.problem2;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DecryptionUtil {
@@ -30,5 +34,19 @@ public class DecryptionUtil {
 			.collect(Collectors.joining()));
 
 		return decrypt(password);
+	}
+
+
+	private static List<Integer> findContinuousValueIndex(List<Character> characterList){
+		Set<Integer> indexSet = new HashSet<>();
+
+		for(int i = 0; i < characterList.size() - 1; i++){
+			if(characterList.get(i) == characterList.get(i + 1)){
+				indexSet.add(i);
+				indexSet.add(i + 1);
+			}
+		}
+
+		return new LinkedList<>(indexSet);
 	}
 }

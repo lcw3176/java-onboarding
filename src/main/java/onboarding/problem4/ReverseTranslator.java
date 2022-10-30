@@ -7,6 +7,14 @@ public class ReverseTranslator {
 
 		for(char i : word.toCharArray()){
 			int asciiCode = getAscii(i);
+
+			if(!isInLowerRange(asciiCode) && !isInUpperRange(asciiCode)){
+				String originText = Character.toString(asciiCode);
+
+				reversedWordBuilder.append(originText);
+				continue;
+			}
+
 			int reversedAsciiCode = convertToReversedAscii(asciiCode);
 			String reversedText = Character.toString(reversedAsciiCode);
 
@@ -16,26 +24,6 @@ public class ReverseTranslator {
 		return reversedWordBuilder.toString();
 	}
 
-
-	private boolean isInRange(int asciiCode){
-		ASCII lowerAscii = ASCII.LOWER_CASE_START_INDEX;
-		ASCII upperAscii = ASCII.UPPER_CASE_START_INDEX;
-		ASCII commonOffset = ASCII.COMMON_INDEX_OFFSET;
-
-		boolean isRange = false;
-
-		if(asciiCode >= lowerAscii.getValue()
-			&& asciiCode <= lowerAscii.getValue() + commonOffset.getValue()){
-			isRange = true;
-		}
-
-		if(asciiCode >= upperAscii.getValue()
-			&& asciiCode <= upperAscii.getValue() + commonOffset.getValue()){
-			isRange = true;
-		}
-
-		return isRange;
-	}
 
 	private boolean isInLowerRange(int asciiCode){
 		ASCII lowerAscii = ASCII.LOWER_CASE_START_INDEX;
@@ -67,11 +55,6 @@ public class ReverseTranslator {
 	}
 
 	private int convertToReversedAscii(int asciiCode){
-		if(!isInRange(asciiCode)){
-			return asciiCode;
-		}
-
-
 		ASCII lowerAscii = ASCII.LOWER_CASE_START_INDEX;
 		ASCII upperAscii = ASCII.UPPER_CASE_START_INDEX;
 		ASCII commonOffset = ASCII.COMMON_INDEX_OFFSET;

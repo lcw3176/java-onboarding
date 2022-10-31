@@ -27,5 +27,14 @@ public class CrewRecommender {
 	}
 
 
+	public boolean isRelatedCrewExist(Crew user, Crew unknownFriend){
+		for(Crew ableToKnownFriend : unknownFriend.getKnownFriendsSet()){
+			if(user.getKnownFriendsSet().contains(ableToKnownFriend)){
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 }

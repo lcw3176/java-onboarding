@@ -40,6 +40,15 @@ public class Problem7 {
         }
 
 
-        return null;
+        return new ArrayList<>(crewMap.values())
+            .stream()
+            .filter(crews -> crews.getPoint() != 0)
+            .sorted(Comparator.comparing(Crew::getPoint).reversed()
+                .thenComparing(Crew::getName))
+            .map(Crew::getName)
+            .filter(name -> !name.equals(user))
+            .filter(name -> !userCrew.getKnownFriendsSet().contains(crewMap.get(name)))
+            .limit(5)
+            .collect(Collectors.toList());
     }
 }

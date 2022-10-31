@@ -1,11 +1,45 @@
 package onboarding;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import onboarding.problem7.Crew;
+import onboarding.problem7.CrewRecommender;
+import onboarding.problem7.RecommendPoint;
 
 public class Problem7 {
     public static List<String> solution(String user, List<List<String>> friends, List<String> visitors) {
-        List<String> answer = Collections.emptyList();
-        return answer;
+        Map<String, Crew> crewMap = new HashMap<>();
+        CrewRecommender crewRecommender = new CrewRecommender();
+
+        crewRecommender.addCrewToMap(List.of(user), crewMap);
+        crewRecommender.addCrewToMap(visitors, crewMap);
+
+        for(List<String> i : friends){
+            crewRecommender.addCrewToMap(i, crewMap);
+            crewRecommender.relateFriendship(i, crewMap);
+        }
+
+
+        Crew userCrew = crewMap.get(user);
+
+        for(Crew unknownCrew : crewMap.values()){
+            if(crewRecommender.isRelatedCrewExist(userCrew, unknownCrew)){
+                unknownCrew.addPoint(RecommendPoint.FRIEND.getPoint());
+            }
+        }
+
+
+        for(String i : visitors){
+            Crew visitorCrew = crewMap.get(i);
+            visitorCrew.addPoint(RecommendPoint.VISITOR.getPoint());
+        }
+
+
+        return null;
     }
 }
